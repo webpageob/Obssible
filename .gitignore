@@ -1,0 +1,9 @@
+# Apple reference material — used only for local design comparison.
+# Never commit or deploy: it's a verbatim copy of Apple's copyrighted
+# marketing screenshot (real product photos + marketing copy).
+www.apple.com_.png
+temporary screenshots/
+
+# Dev artifacts
+node_modules/
+server.log

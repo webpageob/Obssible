@@ -1,0 +1,648 @@
+<title>Obssible — Obsess Until It's Possible</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Obssible helps people go from doing nothing to building something that creates real value and real income. No hype. No shortcuts. Just the method." />
+<link rel="icon" href="brand_assets/logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: "#1d1d1f",
+          "ink-secondary": "#6e6e73",
+          "ink-tertiary": "#86868b",
+          linkblue: "#0066cc",
+          blue: {
+            DEFAULT: "#0071e3",
+            hover: "#0077ed",
+            dark: "#06c",
+          },
+          fill: {
+            secondary: "#fafafc",
+            tertiary: "#f5f5f7",
+          },
+        },
+        fontFamily: {
+          sf: [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            '"SF Pro Display"',
+            '"SF Pro Text"',
+            '"SF Pro Icons"',
+            '"Helvetica Neue"',
+            "Helvetica",
+            "Arial",
+            "sans-serif",
+          ],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html {
+    font-size: 106.25%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body, input, textarea, select, button {
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    font-size: 17px;
+    line-height: 1.4705882353;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    color: #1d1d1f;
+    -webkit-font-smoothing: antialiased;
+  }
+  html { scroll-behavior: smooth; }
+
+  .tracking-tightest { letter-spacing: -0.015em; }
+  .text-balance { text-wrap: balance; }
+
+  .btn-fill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0071e3;
+    color: #fff;
+    border-radius: 980px;
+    padding: 12.5px 23px;
+    font-size: 17px;
+    line-height: 1.17648;
+    letter-spacing: -0.022em;
+    white-space: nowrap;
+    transition: background-color 200ms ease;
+  }
+  .btn-fill:hover { background-color: #0077ed; }
+  .btn-fill:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #0071e3;
+    color: #0071e3;
+    border-radius: 980px;
+    padding: 11.5px 22px;
+    font-size: 17px;
+    line-height: 1.17648;
+    letter-spacing: -0.022em;
+    white-space: nowrap;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+  .btn-outline:hover { background-color: rgba(0,113,227,0.06); }
+  .btn-outline:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.55);
+    color: #fff;
+    border-radius: 980px;
+    padding: 11.5px 22px;
+    font-size: 17px;
+    letter-spacing: -0.022em;
+    white-space: nowrap;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+  .btn-outline-white:hover { background-color: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.85); }
+
+  .link-chevron {
+    color: #06c;
+    font-size: 17px;
+    transition: color 150ms ease;
+  }
+  .link-chevron:hover { color: #0050a0; text-decoration: underline; }
+
+  .nav-link {
+    color: #1d1d1f;
+    font-size: 12px;
+    letter-spacing: -0.01em;
+    opacity: 0.85;
+    transition: opacity 150ms ease;
+  }
+  .nav-link:hover { opacity: 1; }
+
+  .card-tertiary { background-color: #f5f5f7; border-radius: 18px; }
+
+  .pillar-tile {
+    border-radius: 18px;
+    transition: transform 320ms cubic-bezier(0.16,1,0.3,1), box-shadow 320ms ease;
+  }
+  .pillar-tile:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,0.18); }
+
+  .badge-check { color: #06c; }
+  .badge-x { color: #86868b; }
+
+  .reveal { transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.reveal-hidden { opacity: 0; transform: translateY(24px); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  ::selection { background: #0071e3; color: #fff; }
+
+  @media (max-width: 767px) {
+    .mobile-menu { transition: max-height 320ms cubic-bezier(0.16,1,0.3,1), opacity 280ms ease; }
+  }
+</style>
+
+<body class="bg-white text-ink antialiased">
+
+  <!-- ===== GLOBAL NAV ===== -->
+  <header class="fixed top-0 inset-x-0 z-50 h-11 border-b border-black/10 backdrop-blur-xl bg-white/80">
+    <div class="max-w-[1024px] mx-auto h-full px-4 flex items-center justify-between">
+      <a href="#top" class="flex items-center shrink-0" aria-label="Obssible home">
+        <span class="font-bold text-[19px] leading-none text-ink" aria-hidden="true">&Omega;</span>
+      </a>
+
+      <nav class="hidden md:flex items-center flex-1 justify-center gap-8">
+        <a href="#philosophy" class="nav-link">Philosophy</a>
+        <a href="#who" class="nav-link">Who It's For</a>
+        <a href="#journey" class="nav-link">Journey</a>
+        <a href="#method" class="nav-link">Method</a>
+        <a href="#pillars" class="nav-link">Pillars</a>
+      </nav>
+
+      <a href="#join" class="hidden md:block nav-link shrink-0">Join</a>
+
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden w-8 h-8 flex items-center justify-center text-ink">
+        <svg id="menuIconOpen" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 2h16M1 9h16M1 16h16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <svg id="menuIconClose" width="15" height="15" viewBox="0 0 16 16" fill="none" class="hidden"><path d="M1 1l14 14M15 1L1 15" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu md:hidden max-h-0 opacity-0 overflow-hidden bg-white/95">
+      <div class="px-6 pb-6 pt-2 flex flex-col gap-4 text-sm border-t border-black/10">
+        <a href="#philosophy" class="nav-link !text-base w-fit">Philosophy</a>
+        <a href="#who" class="nav-link !text-base w-fit">Who It's For</a>
+        <a href="#journey" class="nav-link !text-base w-fit">Journey</a>
+        <a href="#method" class="nav-link !text-base w-fit">Method</a>
+        <a href="#pillars" class="nav-link !text-base w-fit">Pillars</a>
+        <a href="#join" class="nav-link !text-base w-fit">Join</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== HERO ===== -->
+    <section class="relative pt-20 pb-4 md:pt-24 text-center px-4">
+      <h1 class="reveal is-visible font-semibold text-balance tracking-tightest text-[40px] sm:text-[48px] md:text-[64px] leading-[1.05] text-ink">
+        Obsess until it's possible.
+      </h1>
+      <p class="reveal is-visible text-balance mt-3 max-w-xl mx-auto text-lg md:text-[21px] leading-tight text-ink-secondary" style="transition-delay: 60ms;">
+        We take people from doing nothing to building something that creates real value and real income — no hype, no shortcuts.
+      </p>
+
+      <div class="reveal is-visible mt-5 flex items-center justify-center gap-4 text-[17px]" style="transition-delay: 100ms;">
+        <a href="#join" class="btn-fill">Join Obssible</a>
+        <a href="#method" class="link-chevron">See the method &rsaquo;</a>
+      </div>
+
+      <!-- Dreamer -> Leader progression strip, in place of product photography -->
+      <div class="reveal is-visible mt-14 md:mt-16 pb-16 md:pb-20" style="transition-delay: 160ms;">
+        <div class="flex items-center justify-between max-w-3xl mx-auto gap-1.5 sm:gap-3 md:gap-5">
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-black/10 bg-fill-tertiary flex items-center justify-center text-ink-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-[11px] sm:text-xs text-ink-secondary font-medium">Dreamer</span>
+          </div>
+          <div class="h-px flex-1 bg-black/10"></div>
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-black/10 bg-fill-tertiary flex items-center justify-center text-ink-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/></svg>
+            </div>
+            <span class="text-[11px] sm:text-xs text-ink-secondary font-medium">Creator</span>
+          </div>
+          <div class="h-px flex-1 bg-black/10"></div>
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-black/10 bg-fill-tertiary flex items-center justify-center text-ink-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20l6-11 4 6 3-5 3 10H4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="text-[11px] sm:text-xs text-ink-secondary font-medium">Entrepreneur</span>
+          </div>
+          <div class="h-px flex-1 bg-black/10"></div>
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-black/10 bg-fill-tertiary flex items-center justify-center text-ink-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20V10l4 3 4-6 4 6 4-3v10H4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="text-[11px] sm:text-xs text-ink-secondary font-medium text-center">Business<br class="sm:hidden" /> Owner</span>
+          </div>
+          <div class="h-px flex-1 bg-black/10"></div>
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-blue bg-blue/10 flex items-center justify-center text-blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 8l3 2 5-6 5 6 3-2-2 11H6L4 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="text-[11px] sm:text-xs text-blue font-semibold">Leader</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHILOSOPHY (light-gray promo, like "College, sorted.") ===== -->
+    <section id="philosophy" class="relative bg-fill-tertiary py-16 md:py-20 text-center px-4">
+      <h2 class="font-semibold text-balance text-[32px] md:text-[40px] leading-tight tracking-tightest text-ink">
+        Change yourself first.
+      </h2>
+      <p class="text-balance mt-3 max-w-lg mx-auto text-base md:text-[19px] leading-snug text-ink-secondary">
+        Then the people you love. Then everyone who chooses to live by the same philosophy — help people become who can consistently create results.
+      </p>
+      <div class="mt-6">
+        <a href="#who" class="btn-fill">Learn the philosophy</a>
+      </div>
+
+      <div class="reveal mt-14 flex flex-wrap items-center justify-center gap-3 max-w-3xl mx-auto">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-4 py-2 text-sm font-medium text-ink shadow-sm">Takes action despite fear</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-4 py-2 text-sm font-medium text-ink shadow-sm">Creates value</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-4 py-2 text-sm font-medium text-ink shadow-sm">Uses AI to think and execute better</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-4 py-2 text-sm font-medium text-ink shadow-sm">Keeps improving</span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-4 py-2 text-sm font-medium text-ink shadow-sm">Doesn't quit when it gets hard</span>
+      </div>
+
+      <div class="reveal mt-12 max-w-2xl mx-auto">
+        <p class="font-medium text-balance text-xl md:text-2xl text-ink leading-snug">
+          "We don't build businesses for people. <span class="text-blue">We build people who can build their own businesses.</span>"
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== WHO IT'S FOR / THE REAL PROBLEM (full-bleed gradient, like "MacBook Air") ===== -->
+    <section id="who" class="relative py-20 md:py-28 text-center px-4" style="background: linear-gradient(180deg, #eef4fb 0%, #f5f8fc 55%, #ffffff 100%);">
+      <span class="text-sm md:text-base font-medium text-ink-secondary">Who It's For</span>
+      <h2 class="font-semibold text-balance mt-1 text-[34px] md:text-[52px] leading-[1.08] tracking-tightest text-ink">
+        People don't fail because<br class="hidden md:block" /> they lack ability.
+      </h2>
+      <p class="text-balance mt-4 max-w-xl mx-auto text-lg md:text-[21px] text-ink-secondary">
+        They fail because <span class="text-ink font-medium">fear keeps them from acting.</span>
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="#pillars" class="btn-fill">See the pillars</a>
+        <a href="#join" class="link-chevron">Join now &rsaquo;</a>
+      </div>
+
+      <div class="reveal mt-16 grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto">
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 3 6 3 12c0 3 1.3 5 3 6.5M12 2c5 0 9 4 9 10 0 3-1.3 5-3 6.5M9 21c1-1.2 1-2.8 0-4M15 21c-1-1.2-1-2.8 0-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <span class="text-xs font-medium text-ink">Fear</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 3l18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <span class="text-xs font-medium text-ink">Low confidence</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 17v.01M12 14c0-2.5 3-2.2 3-5a3 3 0 10-6 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <span class="text-xs font-medium text-ink">Lack of knowledge</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M4 20L20 4M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+          <span class="text-xs font-medium text-ink">Overwhelm</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.7-9C.9 8.6 2.4 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.6 0 5.1 3.6 3.7 7-2.2 4.4-9.7 9-9.7 9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+          <span class="text-xs font-medium text-ink">Easy pleasure</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="w-12 h-12 rounded-full bg-white border border-black/10 flex items-center justify-center text-ink-secondary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <span class="text-xs font-medium text-ink">Comfort zone</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TWO-UP: WHO IT'S FOR CARD + STAT CARD ===== -->
+    <section class="px-4 py-4 md:py-6">
+      <div class="max-w-[1024px] mx-auto grid md:grid-cols-2 gap-4">
+        <div class="reveal card-tertiary p-8 md:p-10 flex flex-col">
+          <h3 class="text-sm font-medium text-ink-secondary text-center">Anyone who wants to&hellip;</h3>
+          <p class="font-semibold text-balance mt-1 text-2xl md:text-[28px] text-ink text-center">Make money. Build something real.</p>
+          <ul class="mt-6 grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+            <li class="flex items-center gap-2 text-ink"><span class="badge-check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Start a business</li>
+            <li class="flex items-center gap-2 text-ink"><span class="badge-check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Build a personal brand</li>
+            <li class="flex items-center gap-2 text-ink"><span class="badge-check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Create a product</li>
+            <li class="flex items-center gap-2 text-ink"><span class="badge-check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Create content</li>
+          </ul>
+          <div class="mt-auto pt-8 flex items-center justify-center gap-4">
+            <a href="#pillars" class="btn-fill">See who it's for</a>
+            <a href="#join" class="link-chevron">Join now &rsaquo;</a>
+          </div>
+        </div>
+
+        <div class="reveal card-tertiary p-8 md:p-10 flex flex-col items-center justify-center text-center">
+          <p class="font-semibold text-balance text-3xl md:text-[40px] leading-tight tracking-tightest text-ink">Success = Daily Action &times; Time</p>
+          <p class="mt-3 text-ink-secondary italic max-w-sm">"Small actions, repeated daily, create extraordinary results."</p>
+          <div class="mt-8">
+            <a href="#pillars" class="btn-fill">See the pillars</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TWO-UP: BLACK "NOT" CARD + LIGHT "RESPONSIBILITY" CARD ===== -->
+    <section class="px-4 py-4 md:py-6">
+      <div class="max-w-[1024px] mx-auto grid md:grid-cols-2 gap-4">
+        <div class="reveal rounded-[18px] bg-black text-white p-8 md:p-10 flex flex-col">
+          <span class="text-sm font-medium text-white/60">Not a hype. Not a magic button. Not shortcuts.</span>
+          <p class="font-semibold text-balance mt-2 text-2xl md:text-[28px] leading-snug">We don't promise quick money, easy success, or teach tricks.</p>
+          <div class="mt-auto pt-8">
+            <a href="#pillars" class="btn-outline-white">See what we stand for</a>
+          </div>
+        </div>
+
+        <div class="reveal card-tertiary p-8 md:p-10 flex flex-col">
+          <span class="text-sm font-medium text-ink-secondary">What we take responsibility for</span>
+          <ul class="mt-4 space-y-3 text-[17px]">
+            <li class="flex items-center gap-2.5 text-ink"><span class="badge-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Helping you build a real product</li>
+            <li class="flex items-center gap-2.5 text-ink"><span class="badge-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Helping you sell and build an audience</li>
+            <li class="flex items-center gap-2.5 text-ink"><span class="badge-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Helping you improve and grow</li>
+          </ul>
+          <div class="mt-auto pt-8">
+            <a href="#method" class="btn-fill">See the method</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRANSFORMATION JOURNEY ===== -->
+    <section id="journey" class="relative bg-fill-tertiary py-20 md:py-28 px-4">
+      <div class="max-w-[1024px] mx-auto text-center">
+        <span class="text-sm md:text-base font-medium text-ink-secondary">The Transformation Journey</span>
+        <h2 class="font-semibold mt-1 text-[32px] md:text-[48px] tracking-tightest text-ink text-balance">From consumer to leader.</h2>
+
+        <div class="reveal mt-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="bg-white rounded-[18px] p-6 text-left">
+            <span class="text-2xl text-ink-tertiary font-semibold">01</span>
+            <h3 class="font-semibold text-ink text-lg mt-3">Consumer</h3>
+            <p class="text-sm text-ink-secondary mt-1">Consumes others' value.</p>
+          </div>
+          <div class="bg-white rounded-[18px] p-6 text-left">
+            <span class="text-2xl text-ink-tertiary font-semibold">02</span>
+            <h3 class="font-semibold text-ink text-lg mt-3">Creator</h3>
+            <p class="text-sm text-ink-secondary mt-1">Creates value.</p>
+          </div>
+          <div class="bg-white rounded-[18px] p-6 text-left">
+            <span class="text-2xl text-ink-tertiary font-semibold">03</span>
+            <h3 class="font-semibold text-ink text-lg mt-3">Seller</h3>
+            <p class="text-sm text-ink-secondary mt-1">Sells value.</p>
+          </div>
+          <div class="bg-white rounded-[18px] p-6 text-left">
+            <span class="text-2xl text-ink-tertiary font-semibold">04</span>
+            <h3 class="font-semibold text-ink text-lg mt-3">Business Owner</h3>
+            <p class="text-sm text-ink-secondary mt-1">Builds a system &amp; grows.</p>
+          </div>
+          <div class="bg-blue/5 border border-blue/25 rounded-[18px] p-6 text-left">
+            <span class="text-2xl text-blue font-semibold">05</span>
+            <h3 class="font-semibold text-blue text-lg mt-3">Self-Evolving Leader</h3>
+            <p class="text-sm text-ink-secondary mt-1">Helps others &amp; creates impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== METHOD (full-bleed gradient, like "MacBook Pro") ===== -->
+    <section id="method" class="relative py-20 md:py-28 text-center px-4" style="background: linear-gradient(180deg, #0b0b0c 0%, #1d1d1f 100%);">
+      <span class="text-sm md:text-base font-medium text-white/60">The Obssible Method</span>
+      <h2 class="font-semibold text-balance mt-1 text-[34px] md:text-[52px] leading-[1.08] tracking-tightest text-white">
+        Six steps. On repeat.
+      </h2>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="#join" class="btn-fill">Join now</a>
+        <a href="#" class="link-chevron" style="color:#2997ff;">See the steps &rsaquo;</a>
+      </div>
+
+      <div class="reveal mt-16 max-w-3xl mx-auto text-left">
+        <ol class="relative">
+          <div class="absolute left-6 top-2 bottom-2 w-px bg-white/15"></div>
+
+          <li class="relative pl-20 pb-10">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-semibold">1</div>
+            <h3 class="font-semibold text-white text-xl">Discover</h3>
+            <p class="mt-1 text-white/60">Discover yourself. Extract your experience, skills, interests, and data. Think deeper with AI.</p>
+          </li>
+          <li class="relative pl-20 pb-10">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-semibold">2</div>
+            <h3 class="font-semibold text-white text-xl">Remove</h3>
+            <p class="mt-1 text-white/60">Break the cage. Remove everything that distracts you from your mission.</p>
+          </li>
+          <li class="relative pl-20 pb-10">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-semibold">3</div>
+            <h3 class="font-semibold text-white text-xl">Build</h3>
+            <p class="mt-1 text-white/60">Build something valuable using your experience, market demand, and AI leverage.</p>
+          </li>
+          <li class="relative pl-20 pb-10">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-semibold">4</div>
+            <h3 class="font-semibold text-white text-xl">Publish</h3>
+            <p class="mt-1 text-white/60">Don't hide. Build your brand and show up in public.</p>
+          </li>
+          <li class="relative pl-20 pb-10">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-semibold">5</div>
+            <h3 class="font-semibold text-white text-xl">Sell &amp; Validate</h3>
+            <p class="mt-1 text-white/60">Sell. Get feedback. Learn. Improve your product and your message.</p>
+          </li>
+          <li class="relative pl-20">
+            <div class="absolute left-0 top-0 w-12 h-12 rounded-full bg-blue flex items-center justify-center text-white font-semibold">6</div>
+            <h3 class="font-semibold text-white text-xl">Repeat &amp; Scale</h3>
+            <p class="mt-1 text-white/60">Repeat the cycle. Systemize, automate, and scale. Obsess until it's possible.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== TWO-UP: FLYWHEEL + RESPONSIBILITY RECAP ===== -->
+    <section class="px-4 py-4 md:py-6">
+      <div class="max-w-[1024px] mx-auto grid md:grid-cols-2 gap-4">
+        <div class="reveal card-tertiary p-8 md:p-10 text-center">
+          <p class="font-semibold text-balance text-xl md:text-2xl text-ink">Value &rarr; Product &rarr; Content &rarr; Customers &rarr; Sales &rarr; Feedback</p>
+          <p class="mt-2 text-ink-secondary text-sm">The flywheel of growth. Every loop compounds the next.</p>
+          <div class="mt-6">
+            <a href="#pillars" class="btn-outline">See the flywheel</a>
+          </div>
+        </div>
+        <div class="reveal card-tertiary p-8 md:p-10 text-center">
+          <p class="font-semibold text-balance text-xl md:text-2xl text-ink">Not a hype. Not a magic button. Not shortcuts.</p>
+          <p class="mt-2 text-ink-secondary text-sm">Just daily, obsessive execution.</p>
+          <div class="mt-6">
+            <a href="#join" class="btn-outline">Join Obssible</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CORE PILLARS (colorful tile grid, like "Endless entertainment.") ===== -->
+    <section id="pillars" class="relative py-20 md:py-28 px-4">
+      <div class="max-w-[1024px] mx-auto text-center">
+        <h2 class="font-semibold text-[32px] md:text-[48px] tracking-tightest text-ink text-balance">Everything compounds around six.</h2>
+      </div>
+
+      <div class="reveal mt-12 max-w-[1024px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #eaf2ff 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-blue mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.6 10.8c.4.3.6.8.6 1.3V16h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0012 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">Mindset</h3>
+          <p class="text-sm text-ink-secondary mt-1">Obsession, discipline, and daily execution.</p>
+        </div>
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #ffeef0 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-red-500 mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.7-9C.9 8.6 2.4 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c3.6 0 5.1 3.6 3.7 7-2.2 4.4-9.7 9-9.7 9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">Health</h3>
+          <p class="text-sm text-ink-secondary mt-1">Strong body. Strong mind. Strong results.</p>
+        </div>
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #eafff0 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-green-600 mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 6.5c-1.6-1.2-3.7-1.8-6.2-1.8-.6 0-1 .5-1 1v11.8c0 .6.5 1 1 1 2.3 0 4.3.5 6.2 1.8 1.9-1.3 3.9-1.8 6.2-1.8.6 0 1-.5 1-1V5.7c0-.6-.5-1-1-1-2.5 0-4.6.6-6.2 1.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 6.5v12" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">Skills</h3>
+          <p class="text-sm text-ink-secondary mt-1">Learn what matters. Apply and improve.</p>
+        </div>
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #fff6e3 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-amber-600 mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 12.9a1.7 1.7 0 000-1.8l1-1.8-1.8-1-1.8 1a1.7 1.7 0 00-1.5-.9l-.5-2h-2l-.5 2a1.7 1.7 0 00-1.5.9l-1.8-1-1.8 1 1 1.8a1.7 1.7 0 000 1.8l-1 1.8 1.8 1 1.8-1c.4.4.9.7 1.5.9l.5 2h2l.5-2c.6-.2 1.1-.5 1.5-.9l1.8 1 1.8-1-1-1.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">Systems</h3>
+          <p class="text-sm text-ink-secondary mt-1">Build systems that create freedom.</p>
+        </div>
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #f0eaff 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-violet-600 mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="7" width="14" height="11" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7V4M9 4h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9.5" cy="12.5" r="1" fill="currentColor"/><circle cx="14.5" cy="12.5" r="1" fill="currentColor"/><path d="M2 11v3M22 11v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">AI Leverage</h3>
+          <p class="text-sm text-ink-secondary mt-1">Use AI as your thinking partner and execution multiplier.</p>
+        </div>
+        <div class="pillar-tile p-6 md:p-7" style="background: linear-gradient(160deg, #e3fbff 0%, #f5f5f7 100%);">
+          <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-cyan-600 mb-4 shadow-sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="9" r="2.8" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="10.5" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="M3 19c.6-3 2.6-4.7 5.5-4.7S13.4 16 14 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.5 14.6c2.3.1 3.9 1.7 4.5 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink text-lg">Community</h3>
+          <p class="text-sm text-ink-secondary mt-1">Surround yourself with doers. Grow together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CLOSING CTA ===== -->
+    <section id="join" class="relative py-20 md:py-28 text-center px-4 border-t border-black/10">
+      <img src="brand_assets/logo.png" alt="Obssible mark" class="w-14 h-14 rounded-2xl mx-auto mb-8 shadow-sm ring-1 ring-black/5" />
+
+      <p class="font-semibold text-balance text-[28px] md:text-[44px] leading-tight tracking-tightest text-ink max-w-3xl mx-auto">
+        Your life changes when you go from consuming other people's value to
+        <span class="text-blue">creating your own.</span>
+      </p>
+
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <a href="#" class="btn-fill">Join Obssible Today</a>
+        <a href="#method" class="link-chevron">Revisit the method &rsaquo;</a>
+      </div>
+
+      <p class="mt-6 text-sm text-ink-tertiary">Repeat. Obsess. Evolve.</p>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (multi-column sitemap, Apple-style) ===== -->
+  <footer class="relative bg-fill-tertiary border-t border-black/10">
+    <div class="max-w-[1024px] mx-auto px-6 py-8">
+      <p class="text-xs text-ink-tertiary max-w-3xl">
+        Obssible is a community and method for people who want to build — not consume. Results depend on consistent, daily execution; nothing here is a guarantee of income.
+      </p>
+    </div>
+
+    <div class="max-w-[1024px] mx-auto px-6 py-10 border-t border-black/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+      <div>
+        <h4 class="font-semibold text-ink mb-3">Explore</h4>
+        <ul class="space-y-2 text-ink-secondary">
+          <li><a href="#philosophy" class="hover:text-ink hover:underline">Philosophy</a></li>
+          <li><a href="#who" class="hover:text-ink hover:underline">Who It's For</a></li>
+          <li><a href="#journey" class="hover:text-ink hover:underline">Journey</a></li>
+          <li><a href="#method" class="hover:text-ink hover:underline">Method</a></li>
+          <li><a href="#pillars" class="hover:text-ink hover:underline">Pillars</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ink mb-3">Community</h4>
+        <ul class="space-y-2 text-ink-secondary">
+          <li><a href="#join" class="hover:text-ink hover:underline">Join Obssible</a></li>
+          <li><a href="#" class="hover:text-ink hover:underline">Instagram</a></li>
+          <li><a href="#" class="hover:text-ink hover:underline">X / Twitter</a></li>
+          <li><a href="#" class="hover:text-ink hover:underline">YouTube</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ink mb-3">About</h4>
+        <ul class="space-y-2 text-ink-secondary">
+          <li><a href="#philosophy" class="hover:text-ink hover:underline">Our mission</a></li>
+          <li><a href="#" class="hover:text-ink hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-ink mb-3">Legal</h4>
+        <ul class="space-y-2 text-ink-secondary">
+          <li><a href="#" class="hover:text-ink hover:underline">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-ink hover:underline">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-[1024px] mx-auto px-6 py-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-tertiary">
+      <p>Copyright &copy; 2026 Obssible. All rights reserved.</p>
+      <p>Success = Daily Action &times; Time</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const iconOpen = document.getElementById("menuIconOpen");
+    const iconClose = document.getElementById("menuIconClose");
+    let menuOpen = false;
+    menuBtn.addEventListener("click", () => {
+      menuOpen = !menuOpen;
+      menuBtn.setAttribute("aria-expanded", String(menuOpen));
+      if (menuOpen) {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+        mobileMenu.style.opacity = "1";
+        iconOpen.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+      } else {
+        mobileMenu.style.maxHeight = "0px";
+        mobileMenu.style.opacity = "0";
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      }
+    });
+    mobileMenu.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        menuOpen = false;
+        mobileMenu.style.maxHeight = "0px";
+        mobileMenu.style.opacity = "0";
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      })
+    );
+
+    if ("IntersectionObserver" in window) {
+      const revealEls = document.querySelectorAll(".reveal:not(.is-visible)");
+      revealEls.forEach((el) => el.classList.add("reveal-hidden"));
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("reveal-hidden");
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      );
+      revealEls.forEach((el) => io.observe(el));
+    }
+  </script>
+</body>
