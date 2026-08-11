@@ -85,6 +85,25 @@
   .btn-fill:hover { background-color: #0077ed; }
   .btn-fill:focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; }
 
+  .field {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 980px;
+    padding: 12.5px 20px;
+    font-size: 17px;
+    line-height: 1.17648;
+    letter-spacing: -0.022em;
+    color: #1d1d1f;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .field::placeholder { color: #86868b; }
+  .field:focus {
+    outline: none;
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.18);
+  }
+
   .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -172,7 +191,7 @@
         <a href="#pillars" class="nav-link">Pillars</a>
       </nav>
 
-      <a href="#join" class="hidden md:block nav-link shrink-0">Join</a>
+      <a href="#join" class="hidden md:block nav-link shrink-0">Updates</a>
 
       <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden w-8 h-8 flex items-center justify-center text-ink">
         <svg id="menuIconOpen" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 2h16M1 9h16M1 16h16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -187,7 +206,7 @@
         <a href="#journey" class="nav-link !text-base w-fit">Journey</a>
         <a href="#method" class="nav-link !text-base w-fit">Method</a>
         <a href="#pillars" class="nav-link !text-base w-fit">Pillars</a>
-        <a href="#join" class="nav-link !text-base w-fit">Join</a>
+        <a href="#join" class="nav-link !text-base w-fit">Updates</a>
       </div>
     </div>
   </header>
@@ -203,7 +222,7 @@
       </p>
 
       <div class="reveal is-visible mt-5 flex items-center justify-center gap-4 text-[17px]" style="transition-delay: 100ms;">
-        <a href="#join" class="btn-fill">Join Obssible</a>
+        <a href="#join" class="btn-fill">Get updates</a>
         <a href="#method" class="link-chevron">See the method &rsaquo;</a>
       </div>
 
@@ -286,7 +305,7 @@
       </p>
       <div class="mt-6 flex items-center justify-center gap-4">
         <a href="#pillars" class="btn-fill">See the pillars</a>
-        <a href="#join" class="link-chevron">Join now &rsaquo;</a>
+        <a href="#join" class="link-chevron">Get updates &rsaquo;</a>
       </div>
 
       <div class="reveal mt-16 grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto">
@@ -331,7 +350,7 @@
           </ul>
           <div class="mt-auto pt-8 flex items-center justify-center gap-4">
             <a href="#pillars" class="btn-fill">See who it's for</a>
-            <a href="#join" class="link-chevron">Join now &rsaquo;</a>
+            <a href="#join" class="link-chevron">Get updates &rsaquo;</a>
           </div>
         </div>
 
@@ -413,8 +432,8 @@
         Six steps. On repeat.
       </h2>
       <div class="mt-6 flex items-center justify-center gap-4">
-        <a href="#join" class="btn-fill">Join now</a>
-        <a href="#" class="link-chevron" style="color:#2997ff;">See the steps &rsaquo;</a>
+        <a href="#join" class="btn-fill">Get updates</a>
+        <a href="#pillars" class="link-chevron" style="color:#2997ff;">See the pillars &rsaquo;</a>
       </div>
 
       <div class="reveal mt-16 max-w-3xl mx-auto text-left">
@@ -469,7 +488,7 @@
           <p class="font-semibold text-balance text-xl md:text-2xl text-ink">Not a hype. Not a magic button. Not shortcuts.</p>
           <p class="mt-2 text-ink-secondary text-sm">Just daily, obsessive execution.</p>
           <div class="mt-6">
-            <a href="#join" class="btn-outline">Join Obssible</a>
+            <a href="#join" class="btn-outline">Get updates</a>
           </div>
         </div>
       </div>
@@ -536,10 +555,41 @@
         <span class="text-blue">creating your own.</span>
       </p>
 
-      <div class="mt-8 flex items-center justify-center gap-4">
-        <a href="#" class="btn-fill">Join Obssible Today</a>
+      <p class="mt-5 text-ink-secondary max-w-xl mx-auto">
+        There is no product yet. I'm building this in the open. Leave your email and
+        I'll write to you when there is something real to show.
+      </p>
+
+      <form
+        id="updatesForm"
+        name="updates"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="mt-8 mx-auto flex w-full max-w-md flex-col sm:flex-row items-stretch gap-3"
+      >
+        <input type="hidden" name="form-name" value="updates" />
+        <p class="hidden"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <label for="updatesEmail" class="sr-only">Email address</label>
+        <input
+          id="updatesEmail"
+          class="field flex-1 min-w-0"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="you@example.com"
+        />
+        <button type="submit" class="btn-fill">Get updates</button>
+      </form>
+
+      <p id="updatesStatus" class="mt-4 text-sm text-ink-tertiary" role="status" aria-live="polite">
+        Only when there's something worth sending. Nothing else.
+      </p>
+
+      <p class="mt-8 text-sm text-ink-tertiary">
         <a href="#method" class="link-chevron">Revisit the method &rsaquo;</a>
-      </div>
+      </p>
 
       <p class="mt-6 text-sm text-ink-tertiary">Repeat. Obsess. Evolve.</p>
     </section>
@@ -553,7 +603,7 @@
       </p>
     </div>
 
-    <div class="max-w-[1024px] mx-auto px-6 py-10 border-t border-black/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-xs">
+    <div class="max-w-[1024px] mx-auto px-6 py-10 border-t border-black/10 grid grid-cols-2 md:grid-cols-3 gap-8 text-xs">
       <div>
         <h4 class="font-semibold text-ink mb-3">Explore</h4>
         <ul class="space-y-2 text-ink-secondary">
@@ -565,26 +615,16 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-ink mb-3">Community</h4>
+        <h4 class="font-semibold text-ink mb-3">Follow along</h4>
         <ul class="space-y-2 text-ink-secondary">
-          <li><a href="#join" class="hover:text-ink hover:underline">Join Obssible</a></li>
-          <li><a href="#" class="hover:text-ink hover:underline">Instagram</a></li>
-          <li><a href="#" class="hover:text-ink hover:underline">X / Twitter</a></li>
-          <li><a href="#" class="hover:text-ink hover:underline">YouTube</a></li>
+          <li><a href="#join" class="hover:text-ink hover:underline">Get updates</a></li>
         </ul>
       </div>
       <div>
         <h4 class="font-semibold text-ink mb-3">About</h4>
         <ul class="space-y-2 text-ink-secondary">
           <li><a href="#philosophy" class="hover:text-ink hover:underline">Our mission</a></li>
-          <li><a href="#" class="hover:text-ink hover:underline">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-ink mb-3">Legal</h4>
-        <ul class="space-y-2 text-ink-secondary">
-          <li><a href="#" class="hover:text-ink hover:underline">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-ink hover:underline">Terms of Use</a></li>
+          <li><a href="mailto:junwooschool@gmail.com" class="hover:text-ink hover:underline">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -643,5 +683,28 @@
       );
       revealEls.forEach((el) => io.observe(el));
     }
+
+    const updatesForm = document.getElementById("updatesForm");
+    const updatesStatus = document.getElementById("updatesStatus");
+    updatesForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = updatesForm.querySelector("button[type=submit]");
+      submitBtn.disabled = true;
+      updatesStatus.textContent = "Sending…";
+      try {
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(updatesForm)).toString(),
+        });
+        if (!res.ok) throw new Error(res.status);
+        updatesForm.classList.add("hidden");
+        updatesStatus.textContent = "Got it. I'll be in touch when there's something real.";
+        updatesStatus.className = "mt-4 text-ink";
+      } catch (err) {
+        submitBtn.disabled = false;
+        updatesStatus.textContent = "That didn't go through. Try again, or email junwooschool@gmail.com.";
+      }
+    });
   </script>
 </body>
