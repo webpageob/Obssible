@@ -66,6 +66,11 @@ working screenshots must never ship.
   registered at Porkbun.
 - Design: Apple-homepage structure — white, SF Pro stack, blue pill CTAs,
   alternating white/gray/gradient/black sections. Content is all Obssible's own.
-- **Open gap: every CTA button points nowhere** (`#join`, `#`). No email capture,
-  no product. This is the site's biggest missing piece, but it stays unbuilt until
-  there is real traffic or a real product to point at.
+- CTAs now resolve. The closing `#join` section holds a Netlify Forms email capture
+  (form name `updates`, AJAX submit, inline success). Every `href="#"` dead link is
+  gone; buttons read "Get updates", not "Join Obssible" — there is nothing to join.
+- **Open gap: no product, and no privacy policy** even though the site now collects
+  email addresses from a global audience. Legal footer column was removed rather
+  than left pointing nowhere.
+- After any deploy touching the form: confirm Netlify picked it up (Forms tab) and
+  check whether the account is legacy (100 submissions/month) or credit-based.
